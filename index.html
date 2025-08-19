@@ -40,13 +40,17 @@
             background: #26C6DA;
         }
         .profile-header {
-            position: relative;
-            width: 100%;
-            height: 280px;
-            background: url('bg.jpg') center center/cover no-repeat;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
+         position: relative;
+         width: 100%;
+         height: 280px;
+         background: url('bg-blur.jpg') center center/cover no-repeat;
+         display: flex;
+         align-items: flex-end;
+         justify-content: center;
+         transition: background-image 0.4s;
+        }
+        .profile-header.loaded {
+         background: url('bg.jpg') center center/cover no-repeat;
         }
         .profile-photo {
             position: absolute;
@@ -162,7 +166,6 @@
             align-items: center;
             animation: fadeIn 0.3s;
         }
-        <img src="images/logo.png" alt="logo" loading="lazy">
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -203,13 +206,13 @@
             <img class="profile-photo-side" src="myphoto.jpg" alt="我的照片">
             <div class="works-content">
                 <h2>我的作品展示</h2>
-                <img src="work1.jpg" alt="作品1">
-                <img src="work2.jpg" alt="作品2">
-                <img src="work3.jpg" alt="作品3">
-                <img src="work4.jpg" alt="作品4">
-                <img src="work5.jpg" alt="作品5">
-                <img src="work6.jpg" alt="作品6">
-                <img src="work7.jpg" alt="作品7">
+                <img src="work1.jpg" alt="作品1"loading="lazy">
+                <img src="work2.jpg" alt="作品2"loading="lazy">
+                <img src="work3.jpg" alt="作品3"loading="lazy">
+                <img src="work4.jpg" alt="作品4"loading="lazy">
+                <img src="work5.jpg" alt="作品5"loading="lazy">
+                <img src="work6.jpg" alt="作品6"loading="lazy">
+                <img src="work7.jpg" alt="作品7"loading="lazy">
             </div>
         </div>
     </div>
