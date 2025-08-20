@@ -253,6 +253,13 @@
             e.preventDefault();
             alert('真的不便透露哦亲');
         };
+        // 图片加载完成后再切换背景（提升体验）
+        const header = document.getElementById('profileHeader');
+        const img = new Image();
+            img.src = 'bg.jpg';
+            img.onload = function() {
+            header.classList.add('loaded');
+        };
     </script>
 </body>
 </html>
