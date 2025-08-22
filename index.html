@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>我的个人主页</title>
-    <!-- 在 <head> 里加预加载，提升加载速度 -->
-    <link rel="preload" as="image" href="bg.jpg">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -42,17 +40,13 @@
             background: #26C6DA;
         }
         .profile-header {
-         position: relative;
-         width: 100%;
-         height: 280px;
-         background: url('bg-blur.jpg') center center/cover no-repeat;
-         display: flex;
-         align-items: flex-end;
-         justify-content: center;
-         transition: background-image 0.4s;
-        }
-        .profile-header.loaded {
-         background: url('bg.jpg') center center/cover no-repeat;
+            position: relative;
+            width: 100%;
+            height: 280px;
+            background: url('bg.jpg') center center/cover no-repeat;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
         }
         .profile-photo {
             position: absolute;
@@ -157,6 +151,187 @@
             transform: scale(1.05); 
         }
 
+        /* 博客页面样式 */
+        .blog {
+            display: none;
+            background: rgba(255,255,255,0.92);
+            padding: 60px 40px 40px 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 24px #ccc;
+            width: 80vw;
+            max-width: 800px;
+            margin: 40px auto;
+            border-top: 12px solid #00BCD4;
+            position: relative;
+        }
+        
+        .blog-flex {
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            margin-bottom: 40px;
+        }
+        
+        .blog-content {
+            flex: 1;
+        }
+        
+        .blog-content h2 {
+            color: #00BCD4;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .blog-posts {
+            margin-top: 30px;
+        }
+        
+        .blog-post {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+        }
+        
+        .blog-post:hover {
+            transform: translateY(-5px);
+        }
+        
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .post-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 12px;
+            border: 2px solid #00BCD4;
+        }
+        
+        .post-author {
+            font-weight: bold;
+            color: #E53935;
+        }
+        
+        .post-date {
+            color: #888;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+        
+        .post-content {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .post-image {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+        
+        .post-actions {
+            display: flex;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        
+        .post-action {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+            cursor: pointer;
+            color: #555;
+            transition: color 0.3s;
+        }
+        
+        .post-action:hover {
+            color: #00BCD4;
+        }
+        
+        .post-action.liked {
+            color: #E53935;
+        }
+        
+        .post-action svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+        }
+        
+        .comments-section {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .comment {
+            display: flex;
+            margin-bottom: 12px;
+        }
+        
+        .comment-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+        
+        .comment-content {
+            background: #f0f2f5;
+            padding: 10px 15px;
+            border-radius: 18px;
+            flex: 1;
+        }
+        
+        .comment-author {
+            font-weight: bold;
+            font-size: 14px;
+            color: #E53935;
+            margin-right: 5px;
+        }
+        
+        .comment-text {
+            font-size: 14px;
+        }
+        
+        .comment-input {
+            display: flex;
+            margin-top: 15px;
+        }
+        
+        .comment-input input {
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 18px;
+            padding: 10px 15px;
+            outline: none;
+        }
+        
+        .comment-input button {
+            background: #00BCD4;
+            color: white;
+            border: none;
+            border-radius: 18px;
+            padding: 10px 15px;
+            margin-left: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .comment-input button:hover {
+            background: #26C6DA;
+        }
+
         /* 放大图片弹窗遮罩层 */
         .img-modal {
             display: none;
@@ -186,15 +361,28 @@
             from { transform: scale(0.8);}
             to { transform: scale(1);}
         }
+        
+        .image-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #999;
+            font-size: 14px;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
     <div class="navbar">
         <button onclick="showHome()">主页</button>
         <button onclick="showWorks()">作品</button>
+        <button onclick="showBlog()">博客</button>
     </div>
     <div class="profile-header" id="profileHeader">
-        <img class="profile-photo" src="myphoto.jpg" alt="我的照片">
+        <img class="profile-photo" src="myphoto.jpg" alt="我的照片" onerror="this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22120%22 height%3D%22120%22 viewBox%3D%220 0 120 120%22%3E%3Crect width%3D%22120%22 height%3D%22120%22 fill%3D%22%23f0f0f0%22%2F%3E%3Ctext x%3D%2260%22 y%3D%2265%22 font-family%3D%22Arial%22 font-size%3D%2220%22 text-anchor%3D%22middle%22 fill%3D%22%23999%22%3E头像%3C%2Ftext%3E%3C%2Fsvg%3E'">
     </div>
     <div class="container" id="home">
         <h1>东方谨</h1>
@@ -205,36 +393,66 @@
     </div>
     <div class="works" id="works">
         <div class="works-flex">
-            <img class="profile-photo-side" src="myphoto.jpg" alt="我的照片">
+            <img class="profile-photo-side" src="myphoto.jpg" alt="我的照片" onerror="this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22120%22 height%3D%22120%22 viewBox%3D%220 0 120 120%22%3E%3Crect width%3D%22120%22 height%3D%22120%22 fill%3D%22%23f0f0f0%22%2F%3E%3Ctext x%3D%2260%22 y%3D%2265%22 font-family%3D%22Arial%22 font-size%3D%2220%22 text-anchor%3D%22middle%22 fill%3D%22%23999%22%3E头像%3C%2Ftext%3E%3C%2Fsvg%3E'">
             <div class="works-content">
                 <h2>我的作品展示</h2>
-                <img src="work1.jpg" alt="作品1"loading="lazy">
-                <img src="work2.jpg" alt="作品2"loading="lazy">
-                <img src="work3.jpg" alt="作品3"loading="lazy">
-                <img src="work4.jpg" alt="作品4"loading="lazy">
-                <img src="work5.jpg" alt="作品5"loading="lazy">
-                <img src="work6.jpg" alt="作品6"loading="lazy">
-                <img src="work7.jpg" alt="作品7"loading="lazy">
+                <img src="work1.jpg" alt="作品1" onerror="this.onerror=null; this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22180%22 height%3D%22180%22 viewBox%3D%220 0 180 180%22%3E%3Crect width%3D%22180%22 height%3D%22180%22 fill%3D%22%23f0f0f0%22%2F%3E%3Ctext x%3D%2290%22 y%3D%22100%22 font-family%3D%22Arial%22 font-size%3D%2216%22 text-anchor%3D%22middle%22 fill%3D%22%23999%22%3E作品1%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                <img src="work2.jpg" alt="作品2" onerror="this.onerror=null; this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22180%22 height%3D%22180%22 viewBox%3D%220 0 180 180%22%3E%3Crect width%3D%22180%22 height%3D%22180%22 fill%3D%22%23f0f0f0%22%2F%3E%3Ctext x%3D%2290%22 y%3D%22100%22 font-family%3D%22Arial%22 font-size%3D%2216%22 text-anchor%3D%22middle%22 fill%3D%22%23999%22%3E作品2%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                <img src="work3.jpg" alt="作品3" onerror="this.onerror=null; this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22180%22 height%3D%22180%22 viewBox%3D%220 0 180 180%22%3E%3Crect width%3D%22180%22 height%3D%22180%22 fill%3D%22%23f0f0f0%22%2F%3E%3Ctext x%3D%2290%22 y%3D%22100%22 font-family%3D%22Arial%22 font-size%3D%2216%22 text-anchor%3D%22middle%22 fill%3D%22%23999%22%3E作品3%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                <img src="work4.jpg" alt="作品4" onerror="this.onerror=null; this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22180%22 height%3D%22180%22 viewBox%3D%220 0 180 180%22%3E%3Crect width%3D%22180%22 height%3D%22180%22 fill%3D%22%23f0f0f0%22%2F%3E%3Ctext x%3D%2290%22 y%3D%22100%22 font-family%3D%22Arial%22 font-size%3D%2216%22 text-anchor%3D%22middle%22 fill%3D%22%23999%22%3E作品4%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                <img src="work5.jpg" alt="作品5" onerror="this.onerror=null; this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22180%22 height%3D%22180%22 viewBox%3D%220 0 180 180%22%3E%3Crect width%3D%22180%22 height%3D%22180%22 fill%3D%22%23f0f0f0%22%2F%3E%3Ctext x%3D%2290%22 y%3D%22100%22 font-family%3D%22Arial%22 font-size%3D%2216%22 text-anchor%3D%22middle%22 fill%3D%22%23999%22%3E作品5%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                <img src="work6.jpg" alt="作品6" onerror="this.onerror=null; this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22180%22 height%3D%22180%22 viewBox%3D%220 0 180 180%22%3E%3Crect width%3D%22180%22 height%3D%22180%22 fill%3D%22%23f0f0f0%22%2F%3E%3Ctext x%3D%2290%22 y%3D%22100%22 font-family%3D%22Arial%22 font-size%3D%2216%22 text-anchor%3D%22middle%22 fill%3D%22%23999%22%3E作品6%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                <img src="work7.jpg" alt="作品7" onerror="this.onerror=null; this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22180%22 height%3D%22180%22 viewBox%3D%220 0 180 180%22%3E%3Crect width%3D%22180%22 height%3D%22180%22 fill%3D%22%23f0f0f0%22%2F%3E%3Ctext x%3D%2290%22 y%3D%22100%22 font-family%3D%22Arial%22 font-size%3D%2216%22 text-anchor%3D%22middle%22 fill%3D%22%23999%22%3E作品7%3C%2Ftext%3E%3C%2Fsvg%3E'">
             </div>
         </div>
     </div>
+    
+    <div class="blog" id="blog">
+        <div class="blog-flex">
+            <img class="profile-photo-side" src="myphoto.jpg" alt="我的照片" onerror="this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22120%22 height%3D%22120%22 viewBox%3D%220 0 120 120%22%3E%3Crect width%3D%22120%22 height%3D%22120%22 fill%3D%22%23f0f0f0%22%2F%3E%3Ctext x%3D%2260%22 y%3D%2265%22 font-family%3D%22Arial%22 font-size%3D%2220%22 text-anchor%3D%22middle%22 fill%3D%22%23999%22%3E头像%3C%2Ftext%3E%3C%2Fsvg%3E'">
+            <div class="blog-content">
+                <h2>我的博客</h2>
+                <p>我在这里记录生活，欢迎阅读和互动XDD</p>
+            </div>
+        </div>
+        
+        <div class="blog-posts" id="blogPosts">
+            <!-- 博客文章将通过JavaScript动态生成 -->
+        </div>
+    </div>
+    
     <!-- 图片放大弹窗结构 -->
     <div class="img-modal" id="imgModal" onclick="closeImgModal()">
         <img id="modalImg" src="" alt="放大图片">
     </div>
+    
     <script>
+        // 页面切换功能
         function showHome() {
             document.getElementById("home").style.display = "block";
-            document.getElementById("profileHeader").style.display = "block";
+            document.getElementById("profileHeader").style.display = "flex";
             document.getElementById("works").style.display = "none";
+            document.getElementById("blog").style.display = "none";
         }
+        
         function showWorks() {
             document.getElementById("home").style.display = "none";
             document.getElementById("profileHeader").style.display = "none";
             document.getElementById("works").style.display = "block";
+            document.getElementById("blog").style.display = "none";
         }
+        
+        function showBlog() {
+            document.getElementById("home").style.display = "none";
+            document.getElementById("profileHeader").style.display = "none";
+            document.getElementById("works").style.display = "none";
+            document.getElementById("blog").style.display = "block";
+            loadBlogPosts();
+        }
+        
         // 默认显示主页
         showHome();
+        
         // 作品图片点击放大
         document.querySelectorAll('.works-content img').forEach(function(img){
             img.onclick = function(e){
@@ -243,6 +461,7 @@
                 e.stopPropagation();
             };
         });
+        
         // 关闭弹窗
         function closeImgModal() {
             document.getElementById('imgModal').style.display = 'none';
@@ -251,15 +470,221 @@
         // 联系方式点击趣味弹窗
         document.getElementById('contactLink').onclick = function(e) {
             e.preventDefault();
-            alert('真的不便透露哦亲');
+            alert('真的不便透露哦亲qaq');
         };
-        // 图片加载完成后再切换背景（提升体验）
-        const header = document.getElementById('profileHeader');
-        const img = new Image();
-        img.src = 'bg.jpg';
-        img.onload = function() {
-        header.classList.add('loaded');
-        };
+        
+        // 博客功能
+        // 博客文章数据
+        const blogPosts = [
+            {
+                id: 1,
+                author: "东方谨",
+                avatar: "myphoto.jpg",
+                date: "2025-8-22",
+                content: "寻姐启事：寻找亲姐，红发绿眼，身高一七五，失联多日如有线索请联系我！",
+                image: "blog3-1.jpg",
+                likes: 8,
+                liked: false,
+                comments: [
+                    {author: "shining", text: "你弟弟网站设计得很漂亮啊@拂晓", avatar: "承望.jpg"},
+                    {author: "拂晓", text: "删了", avatar: "东方晓.jpg"},
+                    {author: "东方谨", text: "QAQ姐！！你在哪里为什么不回我消息！！@拂晓", avatar: "myphoto.jpg"}
+                ]
+            },
+            {
+                id: 2,
+                author: "东方谨",
+                avatar: "myphoto.jpg",
+                date: "2025-8-18",
+                content: "分享今天看到的一段很有启发的话：「不要因为害怕失败而不敢尝试，因为最大的失败是从未开始。」",
+                image: "",
+                likes: 12,
+                liked: true,
+                comments: [
+                    {author: "博客小智", text: "说得太好了！我也要开始学习新技能了。", avatar: "博客小智头像.jpg"},
+                    {author: "山风呼啸", text: "这是什么书里的吗？", avatar: "岳无痕.jpg"},
+                    {author: "东方谨", text: "@山风呼啸 不是不是的，待会儿我给你看", avatar: "myphoto.jpg"}
+                ]
+            },
+            {
+                id: 3,
+                author: "东方谨",
+                avatar: "myphoto.jpg",
+                date: "2025-8-15",
+                content: "博客新人报道！",
+                image: "blog1-1.jpg",
+                likes: 15,
+                liked: false,
+                comments: [
+                    {author: "博客小智", text: "努力.jpg欢迎新人加入~", avatar: "博客小智头像.jpg"},
+                    {author: "山风呼啸", text: "恭喜阿谨", avatar: "岳无痕.jpg"}
+                ]
+            }
+        ];
+        
+        // 加载博客文章
+        function loadBlogPosts() {
+            const postsContainer = document.getElementById('blogPosts');
+            postsContainer.innerHTML = '';
+            
+            blogPosts.forEach(post => {
+                const postElement = createPostElement(post);
+                postsContainer.appendChild(postElement);
+            });
+        }
+        
+        // 创建文章元素
+        function createPostElement(post) {
+            const postEl = document.createElement('div');
+            postEl.className = 'blog-post';
+            postEl.dataset.id = post.id;
+            
+            
+            postEl.innerHTML = `
+                <div class="post-header">
+                    <img class="post-avatar" src="${post.avatar}" alt="${post.author}" onerror="this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%2240%22 height%3D%2240%22 viewBox%3D%220 0 40 40%22%3E%3Crect width%3D%2240%22 height%3D%2240%22 fill%3D%22%23f0f0f0%22%2F%3E%3Ctext x%3D%2220%22 y%3D%2222%22 font-family%3D%22Arial%22 font-size%3D%2212%22 text-anchor%3D%22middle%22 fill%3D%22%23999%22%3E头像%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                    <div>
+                        <span class="post-author">${post.author}</span>
+                        <span class="post-date">${post.date}</span>
+                    </div>
+                </div>
+                <div class="post-content">${post.content}</div>
+                ${post.image ? `<img class="post-image" src="${post.image}" alt="文章图片" onclick="enlargeImage('${post.image}')" onerror="this.parentNode.innerHTML='<div class=\'image-placeholder\'>图片加载失败</div>'">` : ''}
+                <div class="post-actions">
+                    <div class="post-action ${post.liked ? 'liked' : ''}" onclick="toggleLike(${post.id})">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                        <span>${post.likes}</span>
+                    </div>
+                    <div class="post-action" onclick="focusCommentInput(${post.id})">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+                        </svg>
+                        <span>评论</span>
+                    </div>
+                </div>
+                <div class="comments-section">
+                    ${post.comments.map(comment => `
+                        <div class="comment">
+                            <img class="comment-avatar" src="${comment.avatar}" alt="${comment.author}" onerror="this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%2232%22 height%3D%2232%22 viewBox%3D%220 0 32 32%22%3E%3Crect width%3D%2232%22 height%3D%2232%22 fill%3D%22%23f0f0f0%22%2F%3E%3Ctext x%3D%2216%22 y%3D%2218%22 font-family%3D%22Arial%22 font-size%3D%2210%22 text-anchor%3D%22middle%22 fill%3D%22%23999%22%3E头像%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                            <div class="comment-content">
+                                <span class="comment-author">${comment.author}:</span>
+                                <span class="comment-text">${comment.text}</span>
+                            </div>
+                        </div>
+                    `).join('')}
+                    <div class="comment-input">
+                        <input type="text" id="comment-${post.id}" placeholder="写评论...">
+                        <button onclick="addComment(${post.id})">发送</button>
+                    </div>
+                </div>
+            `;
+            
+            return postEl;
+        }
+
+         // 添加新博客文章
+        function addNewPost() {
+            const content = document.getElementById('newPostContent').value.trim();
+            if (!content) {
+                alert('请填写博客内容');
+                return;
+            }
+            
+            const imageInput = document.getElementById('newPostImage');
+            let image = '';
+            
+            // 如果有图片上传
+            if (imageInput.files && imageInput.files[0]) {
+                const file = imageInput.files[0];
+                image = URL.createObjectURL(file); // 创建本地URL
+            }
+            
+            // 创建新文章
+            const newPost = {
+                id: blogPosts.length + 1,
+                author: "东方谨",
+                avatar: "myphoto.jpg",
+                date: new Date().toLocaleDateString(),
+                timestamp: new Date().getTime(), // 当前时间戳
+                content: content,
+                image: image,
+                likes: 0,
+                liked: false,
+                comments: []
+            };
+            
+            // 添加到数组开头（最新文章显示在最上面）
+            blogPosts.unshift(newPost);
+            
+            // 重新加载博客文章
+            loadBlogPosts();
+            
+            // 清空表单
+            document.getElementById('newPostContent').value = '';
+            document.getElementById('newPostImage').value = '';
+            
+            alert('博客发布成功！');
+        }
+
+        // 点赞功能
+        function toggleLike(postId) {
+            const post = blogPosts.find(p => p.id === postId);
+            if (!post) return;
+            
+            if (post.liked) {
+                post.likes--;
+            } else {
+                post.likes++;
+            }
+            post.liked = !post.liked;
+            
+            loadBlogPosts();
+        }
+        
+        // 添加评论
+        function addComment(postId) {
+            const commentInput = document.getElementById(`comment-${postId}`);
+            const text = commentInput.value.trim();
+            if (!text) return;
+            
+            const post = blogPosts.find(p => p.id === postId);
+            if (!post) return;
+            
+            // 生成随机用户
+            const randomUsers = [
+                {name: "访客1", avatar: "comment-avatar1.jpg"},
+                {name: "访客2", avatar: "comment-avatar2.jpg"},
+                {name: "访客3", avatar: "comment-avatar3.jpg"}
+            ];
+            const randomUser = randomUsers[Math.floor(Math.random() * randomUsers.length)];
+            
+            post.comments.push({
+                author: randomUser.name,
+                text: text,
+                avatar: randomUser.avatar
+            });
+            
+            loadBlogPosts();
+            
+            // 清空评论输入框
+            commentInput.value = '';
+        }
+        
+        // 聚焦评论输入框
+        function focusCommentInput(postId) {
+            const commentInput = document.getElementById(`comment-${postId}`);
+            if (commentInput) {
+                commentInput.focus();
+            }
+        }
+        
+        // 放大图片
+        function enlargeImage(src) {
+            document.getElementById('imgModal').style.display = 'flex';
+            document.getElementById('modalImg').src = src;
+        }
     </script>
 </body>
 </html>
