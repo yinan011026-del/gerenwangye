@@ -182,6 +182,39 @@
             text-align: left;
         }
         
+        .new-post-form {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .new-post-form textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            font-family: Arial, sans-serif;
+            resize: vertical;
+        }
+        
+        .new-post-form button {
+            background: #00BCD4;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .new-post-form button:hover {
+            background: #26C6DA;
+        }
+        
         .blog-posts {
             margin-top: 30px;
         }
@@ -401,18 +434,28 @@
                 <img src="work3.jpg" alt="作品3" onerror="this.onerror=null; this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22180%22 height%3D%22180%22 viewBox%3D%220 0 180 180%22%3E%3Crect width%3D%22180%22 height%3D%22180%22 fill%3D%22%23f0f0f0%22%2F%3E%3Ctext x%3D%2290%22 y%3D%22100%22 font-family%3D%22Arial%22 font-size%3D%2216%22 text-anchor%3D%22middle%22 fill%3D%22%23999%22%3E作品3%3C%2Ftext%3E%3C%2Fsvg%3E'">
                 <img src="work4.jpg" alt="作品4" onerror="this.onerror=null; this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22180%22 height%3D%22180%22 viewBox%3D%220 0 180 180%22%3E%3Crect width%3D%22180%22 height%3D%22180%22 fill%3D%22%23f0f0f0%22%2F%3E%3Ctext x%3D%2290%22 y%3D%22100%22 font-family%3D%22Arial%22 font-size%3D%2216%22 text-anchor%3D%22middle%22 fill%3D%22%23999%22%3E作品4%3C%2Ftext%3E%3C%2Fsvg%3E'">
                 <img src="work5.jpg" alt="作品5" onerror="this.onerror=null; this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22180%22 height%3D%22180%22 viewBox%3D%220 0 180 180%22%3E%3Crect width%3D%22180%22 height%3D%22180%22 fill%3D%22%23f0f0f0%22%2F%3E%3Ctext x%3D%2290%22 y%3D%22100%22 font-family%3D%22Arial%22 font-size%3D%2216%22 text-anchor%3D%22middle%22 fill%3D%22%23999%22%3E作品5%3C%2Ftext%3E%3C%2Fsvg%3E'">
-                <img src="work6.jpg" alt="作品6" onerror="this.onerror=null; this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22180%22 height%3D%22180%22 viewBox%3D%220 0 180 180%22%3E%3Crect width%3D%22180%22 height%3D%22180%22 fill%3D%22%23f0f0f0%22%2F%3E%3Ctext x%3D%2290%22 y%3D%22100%22 font-family%3D%22Arial%22 font-size%3D%2216%22 text-anchor%3D%22middle%22 fill%3D%22%23999%22%3E作品6%3C%2Ftext%3E%3C%2Fsvg%3E'">
-                <img src="work7.jpg" alt="作品7" onerror="this.onerror=null; this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22180%22 height%3D%22180%22 viewBox%3D%220 0 180 180%22%3E%3Crect width%3D%22180%22 height%3D%22180%22 fill%3D%22%23f0f0f0%22%2F%3E%3Ctext x%3D%2290%22 y%3D%22100%22 font-family%3D%22Arial%22 font-size%3D%2216%22 text-anchor%3D%22middle%22 fill%3D%22%23999%22%3E作品7%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                <img src="work6.jpg" alt="作品6" onerror="this.onerror=null; this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22180%22 height%3D%22180%22 viewBox%3D%220 0 180 180%22%3E%3Crect width%3D%22180%22 height%3D%22180%22 fill%3D%22%23f极f0f0%22%2F%3E%3Ctext x%3D%2290%22 y%3D%22100%22 font-family%3D%22Arial%22 font-size%3D%2216%22 text-anchor%3D%22middle%22 fill%3D%22%23999%22%3E作品6%3C%2Ftext%极3E%3C%2Fsvg%3E'">
+                <img src="work7.jpg" alt="作品7" onerror="this.onerror=null; this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg极%22 width%3D%22180%22 height%3D%22180%22 viewBox%3D%220 0 180 180%22%3E%3Crect width%3D%22180%22 height%3D%22180%22 fill%3D%22%23f0f0f0%22%2F%3E%3Ctext x%3D%2290%22 y%3D%22100%22 font-family%3D%22Arial%22 font-size%3D%2216%22 text-anchor%3D%22middle%22 fill%3D%22%23999%22%3E作品7%3C%2Ftext%3E%3C%2Fsvg%3E'">
             </div>
         </div>
     </div>
     
     <div class="blog" id="blog">
         <div class="blog-flex">
-            <img class="profile-photo-side" src="myphoto.jpg" alt="我的照片" onerror="this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22120%22 height%3D%22120%22 viewBox%3D%220 0 120 120%22%3E%3Crect width%3D%22120%22 height%3D%22120%22 fill%3D%22%23f0f0f0%22%2F%3E%3Ctext x%3D%2260%22 y%3D%2265%22 font-family%3D%22Arial%22 font-size%3D%2220%22 text-anchor%3D%22middle%22 fill%3D%22%23999%22%3E头像%3C%2Ftext%3E%3C%2Fsvg%3E'">
+            <img class="profile-photo-side" src="myphoto.jpg" alt="我的照片" onerror="this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22120%22 height%3D%22120%22 viewBox%3D%220 0 120 120%22%3E%3Crect width%3D%22120%22 height%3D%22120%22 fill%3D%22%23f0f0f0%22%2F%极3E%3Ctext x%3D%2260%22 y%3D%2265%22 font-family%3D%22Arial%22 font-size%3D%2220%22 text-anchor%3D%22middle%22 fill%3D%22%23999%22%3E头像%3C%2Ftext%3E%3C%2Fsvg%3E'">
             <div class="blog-content">
                 <h2>我的博客</h2>
                 <p>我在这里记录生活，欢迎阅读和互动XDD</p>
+                
+                <!-- 添加博客发布表单 -->
+                <div class="new-post-form">
+                    <h3>发布新博客</h3>
+                    <textarea id="newPostContent" placeholder="分享你的想法..."></textarea>
+                    <div>
+                        <input type="file" id="newPostImage" accept="image/*">
+                        <button onclick="addNewPost()">发布</button>
+                    </div>
+                </div>
             </div>
         </div>
         
@@ -539,10 +582,9 @@
             postEl.className = 'blog-post';
             postEl.dataset.id = post.id;
             
-            
             postEl.innerHTML = `
                 <div class="post-header">
-                    <img class="post-avatar" src="${post.avatar}" alt="${post.author}" onerror="this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%2240%22 height%3D%2240%22 viewBox%3D%220 0 40 40%22%3E%3Crect width%3D%2240%22 height%3D%2240%22 fill%3D%22%23f0f0f0%22%2F%3E%3Ctext x%3D%2220%22 y%3D%2222%22 font-family%3D%22Arial%22 font-size%3D%2212%22 text-anchor%3D%22middle%22 fill%3D%22%23999%22%3E头像%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                    <img class="post-avatar" src="${post.avatar}" alt="${post.author}" onerror="this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%2240%22 height%3D%2240%22 viewBox%3D%220 极0 40 40%22%3E%3Crect width%3D%2240%22 height%3D%2240%22 fill%3D%22%23f0f0f0%22%2F%3E%3Ctext x%3D%2220%22 y%3D%2222%22 font-family%3D%22Arial%22 font-size%3D%2212%22 text-anchor%3D%22middle%22 fill%3D%22%23999%22%3E头像%3C%2Ftext%3E%3C%2Fsvg%3E'">
                     <div>
                         <span class="post-author">${post.author}</span>
                         <span class="post-date">${post.date}</span>
@@ -559,7 +601,7 @@
                     </div>
                     <div class="post-action" onclick="focusCommentInput(${post.id})">
                         <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+                            <path d="M20 2H4c-1.1 极0-2 .9-2 2v18l4-极4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
                         </svg>
                         <span>评论</span>
                     </div>
@@ -567,7 +609,7 @@
                 <div class="comments-section">
                     ${post.comments.map(comment => `
                         <div class="comment">
-                            <img class="comment-avatar" src="${comment.avatar}" alt="${comment.author}" onerror="this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%2232%22 height%3D%2232%22 viewBox%3D%220 0 32 32%22%3E%3Crect width%3D%2232%22 height%3D%2232%22 fill%3D%22%23f0f0f0%22%2F%3E%3Ctext x%3D%2216%22 y%3D%2218%22 font-family%3D%22Arial%22 font-size%3D%2210%22 text-anchor%3D%22middle%22 fill%3D%22%23999%22%3E头像%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                            <img class="comment-avatar" src="${comment.avatar}" alt="${comment.author}" onerror="this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%2232%22 height%3D%2232%22 viewBox%3D%220 0 32 32%22%3E%3Crect width%3D%2232%22 height%3D%2232%22 fill%3D%22%23f0f0f0%22%2F%3E%3Ctext x%3D%2216%22 y%3D%2218%22 font-family%3D%22Arial%22 font-size%3D%2210%22 text-anchor%3D%22middle%22 fill%3D%22%23999%22%3E头像%3C%2Ftext%3极E%3C%2Fsvg%3E'">
                             <div class="comment-content">
                                 <span class="comment-author">${comment.author}:</span>
                                 <span class="comment-text">${comment.text}</span>
@@ -584,7 +626,7 @@
             return postEl;
         }
 
-         // 添加新博客文章
+        // 添加新博客文章
         function addNewPost() {
             const content = document.getElementById('newPostContent').value.trim();
             if (!content) {
@@ -607,7 +649,6 @@
                 author: "东方谨",
                 avatar: "myphoto.jpg",
                 date: new Date().toLocaleDateString(),
-                timestamp: new Date().getTime(), // 当前时间戳
                 content: content,
                 image: image,
                 likes: 0,
@@ -642,7 +683,6 @@
             
             loadBlogPosts();
         }
-        
         // 添加评论
         function addComment(postId) {
             const commentInput = document.getElementById(`comment-${postId}`);
