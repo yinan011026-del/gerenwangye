@@ -82,7 +82,7 @@
         
         .container {
             background: #fff;
-            padding: 90px 30px 30px 30px;
+            padding: 20px 30px 30px 30px;
             border-radius: 8px;
             box-shadow: 0 0 10px #ccc;
             max-width: 600px;
@@ -745,9 +745,11 @@
             
             // 生成随机用户
             const randomUsers = [
-                {name: "访客1", avatar: "https://placekitten.com/104/104"},
-                {name: "访客2", avatar: "https://placekitten.com/105/105"},
-                {name: "访客3", avatar: "https://placekitten.com/106/106"}
+                {name: "访客1", avatar: "访客1.jpg"},
+                {name: "访客2", avatar: "访客2.jpg"},
+                {name: "访客3", avatar: "访客3.jpg"},
+                {name: "访客4", avatar: "访客4.jpg"},
+                {name: "访客5", avatar: "访客5.jpg"}
             ];
             const randomUser = randomUsers[Math.floor(Math.random() * randomUsers.length)];
             
@@ -780,5 +782,4 @@
     </script>
 </body>
 </html>
-
 
