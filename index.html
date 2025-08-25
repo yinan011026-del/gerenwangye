@@ -2,14 +2,23 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的个人主页</title>
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
         body {
             font-family: Arial, sans-serif;
             background: linear-gradient(to bottom right, #e9abaa 0%, #beede8 100%);
             margin: 0;
             min-height: 100vh;
+            padding-bottom: 40px;
         }
+        
         .navbar {
             width: 100%;
             height: 36px;
@@ -20,11 +29,16 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
         }
+        
         .navbar:hover {
             height: 56px;
             background: #E53935;
         }
+        
         .navbar button {
             font-size: 16px;
             padding: 6px 18px;
@@ -36,18 +50,22 @@
             cursor: pointer;
             transition: background 0.3s;
         }
+        
         .navbar button:hover {
             background: #26C6DA;
         }
+        
         .profile-header {
             position: relative;
             width: 100%;
             height: 280px;
-            background: url('bg.jpg') center center/cover no-repeat;
+            background: url('https://placekitten.com/1200/600') center center/cover no-repeat;
             display: flex;
             align-items: flex-end;
             justify-content: center;
+            margin-top: 36px;
         }
+        
         .profile-photo {
             position: absolute;
             left: 50%;
@@ -61,6 +79,7 @@
             background: #fff;
             object-fit: cover;
         }
+        
         .container {
             background: #fff;
             padding: 90px 30px 30px 30px;
@@ -70,16 +89,19 @@
             margin: 80px auto 40px auto;
             border-top: 8px solid #E53935;
         }
+        
         h1 {
             color: #E53935;
             text-align: center;
             margin-top: 0;
         }
+        
         p {
             font-size: 18px;
             color: #333;
             text-align: center;
         }
+        
         .contact {
             margin-top: 20px;
             background: #E0F7FA;
@@ -88,10 +110,12 @@
             border-left: 4px solid #00BCD4;
             text-align: center;
         }
+        
         a {
             color: #E53935;
             text-decoration: none;
         }
+        
         a:hover {
             color: #00BCD4;
         }
@@ -100,12 +124,12 @@
         .works {
             display: none;
             background: rgba(255,255,255,0.92);
-            padding: 60px 40px 40px 40px;
+            padding: 60px 20px 40px 20px;
             border-radius: 20px;
             box-shadow: 0 0 24px #ccc;
-            width: 80vw;
+            width: 90vw;
             min-height: 60vh;
-            margin: 40px auto 40px auto;
+            margin: 100px auto 40px auto;
             border-top: 12px solid #00BCD4;
             text-align: center;
             position: relative;
@@ -114,9 +138,11 @@
 
         .works-flex {
             display: flex;
-            align-items: flex-start;
+            flex-direction: column;
+            align-items: center;
             justify-content: flex-start;
         }
+        
         .profile-photo-side {
             width: 120px;
             height: 120px;
@@ -125,28 +151,37 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.15);
             background: #fff;
             object-fit: cover;
-            margin-right: 36px;
-            margin-top: 10px;
-            margin-left: 10px;
-            flex-shrink: 0;
+            margin: 0 auto 20px auto;
         }
+        
         .works-content {
-            flex: 1;
-            text-align: left;
+            width: 100%;
+            text-align: center;
         }
+        
         .works-content h2 {
             color: #00BCD4;
             margin-bottom: 20px;
-            text-align: left;
+            text-align: center;
         }
+        
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            justify-content: center;
+        }
+        
         .works-content img {
-            width: 180px;
-            margin: 12px;
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             cursor: pointer;
             transition: transform 0.2s;
         }
+        
         .works-content img:hover { 
             transform: scale(1.05); 
         }
@@ -155,31 +190,33 @@
         .blog {
             display: none;
             background: rgba(255,255,255,0.92);
-            padding: 60px 40px 40px 40px;
+            padding: 60px 20px 40px 20px;
             border-radius: 20px;
             box-shadow: 0 0 24px #ccc;
-            width: 80vw;
+            width: 90vw;
             max-width: 800px;
-            margin: 40px auto;
+            margin: 100px auto;
             border-top: 12px solid #00BCD4;
             position: relative;
         }
         
         .blog-flex {
             display: flex;
-            align-items: flex-start;
+            flex-direction: column;
+            align-items: center;
             justify-content: flex-start;
             margin-bottom: 40px;
         }
         
         .blog-content {
-            flex: 1;
+            width: 100%;
+            text-align: center;
         }
         
         .blog-content h2 {
             color: #00BCD4;
             margin-bottom: 20px;
-            text-align: left;
+            text-align: center;
         }
         
         .blog-posts {
@@ -332,34 +369,54 @@
             background: #26C6DA;
         }
 
-        /* 放大图片弹窗遮罩层 */
+        /* 放大图片弹窗遮罩层 - 修复版 */
         .img-modal {
             display: none;
             position: fixed;
-            z-index: 100;
-            left: 0; top: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.6);
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
             justify-content: center;
             align-items: center;
             animation: fadeIn 0.3s;
+            touch-action: manipulation;
         }
+        
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-        /* 放大的图片效果 */
-        .img-modal img {
-            max-width: 80vw;
-            max-height: 80vh;
-            border-radius: 18px;
+        
+        /* 放大的图片效果 - 修复版 */
+        .img-modal-content {
+            max-width: 95%;
+            max-height: 95%;
+            border-radius: 12px;
             box-shadow: 0 8px 32px rgba(0,0,0,0.35);
-            transition: transform 0.3s;
-            transform: scale(0.8);
             animation: imgZoomIn 0.3s forwards;
+            -webkit-user-drag: none;
+            user-select: none;
         }
+        
         @keyframes imgZoomIn {
             from { transform: scale(0.8);}
             to { transform: scale(1);}
+        }
+        
+        /* 关闭按钮 */
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10000;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
         }
         
         .image-placeholder {
@@ -373,6 +430,61 @@
             font-size: 14px;
             border-radius: 8px;
         }
+        
+        /* 响应式设计 */
+        @media (min-width: 768px) {
+            .works-flex {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+            
+            .profile-photo-side {
+                margin: 10px 36px 0 10px;
+            }
+            
+            .works-content {
+                text-align: left;
+            }
+            
+            .works-content h2 {
+                text-align: left;
+            }
+            
+            .blog-flex {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+            
+            .blog-content h2 {
+                text-align: left;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .navbar {
+                height: 46px;
+            }
+            
+            .navbar button {
+                padding: 8px 12px;
+                font-size: 14px;
+                margin: 0 4px;
+            }
+            
+            .profile-header {
+                height: 220px;
+            }
+            
+            .container {
+                padding: 70px 20px 20px 20px;
+                margin: 60px auto 30px auto;
+            }
+            
+            .works, .blog {
+                padding: 50px 15px 30px 15px;
+                margin: 80px auto 30px auto;
+            }
+        }
     </style>
 </head>
 <body>
@@ -381,9 +493,11 @@
         <button onclick="showWorks()">作品</button>
         <button onclick="showBlog()">博客</button>
     </div>
+    
     <div class="profile-header" id="profileHeader">
-        <img class="profile-photo" src="myphoto.jpg" alt="我的照片" >
+        <img class="profile-photo" src="https://placekitten.com/200/200" alt="我的照片" onerror="this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22120%22 height%3D%22120%22 viewBox%3D%220 0 120 120%22%3E%3Crect width%3D%22120%22 height%3D%22120%22 fill%3D%22%23f0f0f0%22%2F%3E%3Ctext x%3D%2260%22 y%3D%2265%22 font-family%3D%22Arial%22 font-size%3D%2220%22 text-anchor%3D%22middle%22 fill%3D%22%23999%22%3E头像%3C%2Ftext%3极E%3C%2Fsvg%3E'">
     </div>
+    
     <div class="container" id="home">
         <h1>东方谨</h1>
         <p>欢迎来到我的个人主页！我是一名刚玩博客的新手，希望在这里记录我的生活( *ˊᵕˋ)✩︎‧₊</p>
@@ -391,25 +505,27 @@
             <p>联系方式：<a href="mailto:不便透露bubiantoulu@email.com" id="contactLink">不便透露bubiantoulu@email.com</a></p>
         </div>
     </div>
+    
     <div class="works" id="works">
         <div class="works-flex">
-            <img class="profile-photo-side" src="myphoto.jpg" alt="我的照片" onerror="this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2极Fsvg%22 width%3D%22120%22 height%3D%22120%22 viewBox%3D%220 0 120 极120%22%3E%3Crect width%3D%22120%22 height%3D%22120%22 fill%3D%22%23f0f0f0%22%2F%3E%3Ctext x%3D%2260%22 y%3D%2265%22 font-family%3D%22Arial%22 font-size%3D%2220%22 text-anchor%3D%22middle%22 fill%3D%22%23999%22%3E头像%3C%2Ftext%3E%3C%2Fsvg%3E'">
+            <img class="profile-photo-side" src="https://placekitten.com/200/200" alt="我的照片" onerror="this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22120%22 height%3D%22120%22 viewBox%3D%220 0 120 120%22%3E%3Crect width%3D%22120%22 height%3D%22120%22 fill%3D极%22%23f0f0f0%22%2F%3E%3Ctext x%3D%2260%22 y%3D%2265%22 font-family%3D%22Arial%22 font-size%3D%2220%22 text-anchor%3D%22middle%22 fill%3D%22%23999%22%3E头像%3C%2Ftext%3E%3C%2Fsvg%3E'">
             <div class="works-content">
                 <h2>我的作品展示</h2>
-                <img src="work1.jpg" alt="作品1">
-                <img src="work2.jpg" alt="作品2">
-                <img src="work3.jpg" alt="作品3">
-                <img src="work4.jpg" alt="作品4">
-                <img src="work5.jpg" alt="作品5">
-                <img src="work6.jpg" alt="作品6">
-                <img src="work7.jpg" alt="作品7">
+                <div class="works-grid">
+                    <img src="https://placekitten.com/300/300" alt="作品1" onclick="enlargeImage(this.src)">
+                    <img src="https://placekitten.com/301/301" alt="作品2" onclick="enlargeImage(this.src)">
+                    <img src="https://placekitten.com/302/302" alt="作品3" onclick="enlargeImage(this.src)">
+                    <img src="https://placekitten.com/303/303" alt="作品4" onclick="enlargeImage(this.src)">
+                    <img src="https://placekitten.com/304/304" alt="作品5" onclick="enlargeImage(this.src)">
+                    <img src="https://placekitten.com/305/305" alt="作品6" onclick="enlargeImage(this.src)">
+                </div>
             </div>
         </div>
     </div>
     
     <div class="blog" id="blog">
         <div class="blog-flex">
-            <img class="profile-photo-side" src="myphoto.jpg" alt="我的照片" >
+            <img class="profile-photo-side" src="https://placekitten.com/200/200" alt="我的照片" onerror="this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22120%22 height%3D%221极20%22 viewBox%3D%220 0 120 120%22%3E%3Crect width%3D%22120%22 height%3D%22120%22 fill%3D%22%23f0f0f0%22%2F%3E%3Ctext x%3D%2260%22 y%3D%2265%22 font-family%3D%22Arial%22 font-size%3D%2220%22 text-an极chor%3D%22middle%22 fill%3D%22%23999%22%3E头像%3C%2Ftext%3E%3C%2Fsvg%3E'">
             <div class="blog-content">
                 <h2>我的博客</h2>
                 <p>我在这里记录生活，欢迎阅读和互动XDD</p>
@@ -421,9 +537,10 @@
         </div>
     </div>
     
-    <!-- 图片放大弹窗结构 -->
-    <div class="img-modal极" id="imgModal" onclick="closeImgModal()">
-        <img id="modalImg" src="" alt="放大图片">
+    <!-- 图片放大弹窗结构 - 修复版 -->
+    <div class="img-modal" id="imgModal">
+        <span class="close-modal" onclick="closeImgModal()">&times;</span>
+        <img class="img-modal-content" id="modalImg" src="" alt="放大图片">
     </div>
     
     <script>
@@ -455,22 +572,41 @@
         
         // 作品图片点击放大
         document.querySelectorAll('.works-content img').forEach(function(img){
-            img.onclick = function(e){
+            img.addEventListener('click', function(e){
                 document.getElementById('imgModal').style.display = 'flex';
                 document.getElementById('modalImg').src = this.src;
+                document.body.style.overflow = 'hidden'; // 防止背景滚动
                 e.stopPropagation();
-            };
+            });
+            
+            // 添加触摸事件支持
+            img.addEventListener('touchstart', function(e) {
+                if (e.touches.length === 1) { // 单指触摸
+                    document.getElementById('imgModal').style.display = 'flex';
+                    document.getElementById('modalImg').src = this.src;
+                    document.body.style.overflow = 'hidden'; // 防止背景滚动
+                    e.preventDefault(); // 阻止默认行为
+                }
+            }, {passive: false});
         });
         
         // 关闭弹窗
         function closeImgModal() {
             document.getElementById('imgModal').style.display = 'none';
+            document.body.style.overflow = 'auto'; // 恢复背景滚动
         }
+        
+        // 点击蒙层也可以关闭
+        document.getElementById('imgModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeImgModal();
+            }
+        });
 
         // 联系方式点击趣味弹窗
         document.getElementById('contactLink').onclick = function(e) {
             e.preventDefault();
-            alert('真的不便透露哦亲(=u=)');
+            alert('真的不便透露哦亲qaq');
         };
         
         // 博客功能
@@ -479,45 +615,45 @@
             {
                 id: 1,
                 author: "东方谨",
-                avatar: "myphoto.jpg",
+                avatar: "https://placekitten.com/200/200",
                 date: "2025-8-22",
                 content: "寻姐启事：寻找亲姐，红发绿眼，身高一七五，失联多日如有线索请联系我！",
-                image: "blog3-1.jpg",
+                image: "https://placekitten.com/600/400",
                 likes: 8,
                 liked: false,
                 comments: [
-                    {author: "shining", text: "你弟弟网站设计得很漂亮啊@拂晓", avatar: "承望.jpg"},
-                    {author: "拂晓", text: "删了", avatar: "东方晓.jpg"},
-                    {author: "东方谨", text: "QAQ姐！！你在哪里为什么不回我消息！！@拂晓", avatar: "myphoto.jpg"}
+                    {author: "shining", text: "你弟弟网站设计得很漂亮啊@拂晓", avatar: "https://placekitten.com/100/100"},
+                    {author: "拂晓", text: "删了", avatar: "https://placekitten.com/101/101"},
+                    {author: "东方谨", text: "QAQ姐！！你在哪里为什么不回我消息！！@拂晓", avatar: "https://placekitten.com/200/200"}
                 ]
             },
             {
                 id: 2,
                 author: "东方谨",
-                avatar: "myphoto.jpg",
+                avatar: "https://placekitten.com/200/200",
                 date: "2025-8-18",
                 content: "分享今天看到的一段很有启发的话：「不要因为害怕失败而不敢尝试，因为最大的失败是从未开始。」",
                 image: "",
                 likes: 12,
                 liked: true,
                 comments: [
-                    {author: "博客小智", text: "说得太好了！我也要开始学习新技能了。", avatar: "博客小智头像.jpg"},
-                    {author: "山风呼啸", text: "这是什么书里的吗？", avatar: "岳无痕.jpg"},
-                    {author: "东方谨", text: "@山风呼啸 不是不是的，待会儿我给你看", avatar极: "myphoto.jpg"}
+                    {author: "博客小智", text: "说得太好了！我也要开始学习新技能了。", avatar: "https://placekitten.com/102/102"},
+                    {author: "山风呼啸", text: "这是什么书里的吗？", avatar: "https://placekitten.com/103/103"},
+                    {author: "东方谨", text: "@山风呼啸 不是不是的，待会儿我给你看", avatar: "https://placekitten.com/200/200"}
                 ]
             },
             {
                 id: 3,
                 author: "东方谨",
-                avatar: "myphoto.jpg",
+                avatar: "https://placekitten.com/200/200",
                 date: "2025-8-15",
                 content: "博客新人报道！",
-                image: "blog1-1.jpg",
+                image: "https://placekitten.com/600/401",
                 likes: 15,
                 liked: false,
                 comments: [
-                    {author: "博客小智", text: "努力.jpg欢迎新人加入~", avatar: "博客小智头像.jpg"},
-                    {author: "山风呼啸", text: "恭喜阿谨", avatar: "岳无痕.jpg"}
+                    {author: "博客小智", text: "努力.jpg欢迎新人加入~", avatar: "https://placekitten.com/102/102"},
+                    {author: "山风呼啸", text: "恭喜阿谨", avatar: "https://placekitten.com/103/103"}
                 ]
             }
         ];
@@ -541,9 +677,9 @@
             
             postEl.innerHTML = `
                 <div class="post-header">
-                    <img class="post-avatar" src="${post.avatar}" alt="${post.author}" >
+                    <img class="post-avatar" src="${post.avatar}" alt="${post.author}" onerror="this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%2240%22 height%3D%2240%22 viewBox%3D%220 0 40 40%22%3E%3Crect width%3D%2240%22 height%3D%2240%22 fill%3D%22%23f0f0f0%22%2F%3E%3Ctext x%3D%2220%22 y%3D%2222%22 font-family%3D%22Arial%22 font-size%3D%2212%22 text-anchor%3D%22middle%22 fill%3D%22%23999%22%3E头像%3C%2Ftext%3E%3C%2Fsvg%3E'">
                     <div>
-                        <span class="post-author">${post.author}</span>
+                        <span class极="post-author">${post.author}</span>
                         <span class="post-date">${post.date}</span>
                     </div>
                 </div>
@@ -552,7 +688,7 @@
                 <div class="post-actions">
                     <div class="post-action ${post.liked ? 'liked' : ''}" onclick="toggleLike(${post.id})">
                         <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c极0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 极8.5c0 3.78-3.4 6.86-8.55 11.54L12 极21.35z"/>
                         </svg>
                         <span>${post.likes}</span>
                     </div>
@@ -566,7 +702,7 @@
                 <div class="comments-section">
                     ${post.comments.map(comment => `
                         <div class="comment">
-                            <img class="comment-avatar" src="${comment.avatar}" alt="${comment.author}" >
+                            <img class="comment-avatar" src="${comment.avatar}" alt="${comment.author}" onerror="this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%2232%22 height%3D%2232%22 viewBox%3D%220 0 32 32%22%3E%3Crect width%3D%2232%22 height%3D%2232%22 fill%3D%22%23f0f0f0%22%2F%3E%3Ctext x%3D%2216%22 y%3D%2218%22 font-family%3D%22Arial%22 font-size%3D%2210%22 text-anchor%3D%22middle极%22 fill%3D%22%23999%22%3E头像%3C%2Ftext%3E%3C%2Fsvg%3E'">
                             <div class="comment-content">
                                 <span class="comment-author">${comment.author}:</span>
                                 <span class="comment-text">${comment.text}</span>
@@ -609,9 +745,9 @@
             
             // 生成随机用户
             const randomUsers = [
-                {name: "访客1", avatar: "comment-avatar1.jpg"},
-                {name: "访客2", avatar: "comment-avatar2.jpg"},
-                {name: "访客3", avatar: "comment-avatar3.jpg"}
+                {name: "访客1", avatar: "https://placekitten.com/104/104"},
+                {name: "访客2", avatar: "https://placekitten.com/105/105"},
+                {name: "访客3", avatar: "https://placekitten.com/106/106"}
             ];
             const randomUser = randomUsers[Math.floor(Math.random() * randomUsers.length)];
             
@@ -623,13 +759,13 @@
             
             loadBlogPosts();
             
-            // 清空评论输入框
+            // 清空评论极输入框
             commentInput.value = '';
         }
         
         // 聚焦评论输入框
         function focusCommentInput(postId) {
-            const commentInput = document.getElementById(`comment-${postId}`);
+            const commentInput = document.getElementById(`comment-${post.id}`);
             if (commentInput) {
                 commentInput.focus();
             }
@@ -639,8 +775,8 @@
         function enlargeImage(src) {
             document.getElementById('imgModal').style.display = 'flex';
             document.getElementById('modalImg').src = src;
+            document.body.style.overflow = 'hidden'; // 防止背景滚动
         }
     </script>
 </body>
 </html>
-
